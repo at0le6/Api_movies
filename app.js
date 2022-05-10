@@ -1,22 +1,9 @@
-import knex from 'knex';
-import dotenv from 'dotenv';
-dotenv.config();
+import express from "express";
+import routesFilms from './routes/films.routes.js'
 
-console.log(
-  process.env.DB_HOST,
-  process.env.DB_PORT,
-  process.env.DB_USER,
-  process.env.DB_PASS,
-  process.env.DB_NAME
-);
+const app=express()
+app.use(express.json());
 
-// knex({
-//   client: 'pg',
-//   connection: {
-//     host: process.env.DB_HOST,
-//     port: process.env.DB_PORT,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASS,
-//     database: process.env.DB_NAME,
-//   },
-// });
+app.use("/api",routesFilms)
+
+export default app
